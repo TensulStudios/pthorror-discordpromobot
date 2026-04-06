@@ -28,12 +28,10 @@ function generateCode() {
 }
 
 async function postDailyCode(channel) {
-   const hash = crypto.createHash('sha256').update(`${now.getUTCFullYear()}${now.getUTCMonth() + 1}${now.getUTCDate()}`).digest();
-   const code = (hash.readUInt32BE(0) % 100000).toString().padStart(5, '0');
    return channel.send({ embeds: [new EmbedBuilder()
       .setColor(0x0099ff)
       .setTitle('PT Hat Bot')
-      .addFields({ name: '\u200B', value: `Today's code:\n\`\`\`\n${code}\n\`\`\``, inline: true })
+      .addFields({ name: '\u200B', value: `Today's code:\n\`\`\`\n${generateCode()}\n\`\`\``, inline: true })
    ]});
 }
 
